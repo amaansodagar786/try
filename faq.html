@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techorses FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e86fa;
+            --secondary-color: #00c6ff;
+            --card-bg: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --highlight-color: #f8f9fa;
+            --text-color: #333;
+            --light-bg: #ffffff;
+            --divider-color: rgba(0, 0, 0, 0.1);
+            --scroll-speed: 40s;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: -40px;
+            padding: 60px 20px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 99;
+        }
+
+        .faq-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: clamp(1.8rem, 4vw, 40px);
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: rgb(46, 134, 250);
+            position: relative;
+        }
+
+        .faq-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .faq-container {
+                gap: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .faq-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 80px;
+            }
+            
+            .faq-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1px;
+                height: 100%;
+                background: linear-gradient(
+                    to bottom, 
+                    transparent 0%, 
+                    var(--divider-color) 15%, 
+                    var(--divider-color) 85%, 
+                    transparent 100%
+                );
+                z-index: 1;
+            }
+        }
+
+        .faq-column {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        /* Mobile View */
+        @media (max-width: 767px) {
+            .faq-container {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .right-column {
+                display: none;
+            }
+            
+            .left-column {
+                width: 100%;
+                height: 70vh;
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .faq-content {
+                animation: none !important;
+                gap: 15px;
+            }
+            
+            .faq-card {
+                margin: 0 5px 15px;
+                padding: 15px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) {
+            .faq-column {
+                height: 40px;
+            }
+        }
+        /* BIG SCREEN RESPONSIVE */
+        @media (min-width: 1024px) and (max-width: 2800px) {
+            .faq-container {
+                gap: 80px;
+                justify-content: center;
+            }
+
+            /* Slightly increase spacing on very large screens */
+            @media (min-width: 2000px) {
+                .faq-container {
+                    gap: 100px;
+                }
+                
+                .faq-column {
+                    height: 550px;
+                    max-width: 550px;
+                }
+                
+                .faq-title {
+                    margin-bottom: 80px;
+                }
+                
+                .faq-title::after {
+                    width: 100px;
+                    height: 5px;
+                    bottom: -20px;
+                }
+            }
+        }
+
+        /* Animation keyframes */
+        @keyframes scrollTopToBottom {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(calc(-100% + 500px));
+            }
+        }
+
+        @keyframes scrollBottomToTop {
+            0% {
+                transform: translateY(calc(-100% + 500px));
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        /* Laptop/Desktop */
+        @media (min-width: 1024px) {
+            .faq-column {
+                height: 500px;
+                max-width: 500px;
+            }
+        }
+
+        .left-column .faq-content {
+            animation: scrollTopToBottom var(--scroll-speed) linear infinite;
+        }
+
+        .right-column .faq-content {
+            animation: scrollBottomToTop var(--scroll-speed) linear infinite;
+        }
+
+        .faq-column:hover .faq-content {
+            animation-play-state: paused;
+        }
+
+        .faq-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .faq-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 5px;
+            border-left: 4px solid var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+            margin: 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .faq-card {
+                padding: 15px;
+                margin: 0;
+            }
+        }
+
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background-color: var(--highlight-color);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .faq-question i {
+            font-size: 1.3rem;
+            margin-right: 15px;
+            color: var(--primary-color);
+            min-width: 24px;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        @media (min-width: 768px) {
+            .faq-question h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        .faq-answer p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            padding-left: 40px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 767px) {
+            .faq-answer p {
+                padding-left: 0;
+            }
+        }
+
+        .faq-column::before,
+        .faq-column::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .faq-column::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--light-bg), transparent);
+        }
+
+        .faq-column::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--light-bg), transparent);
+        }
+
+        @keyframes scrollTopToBottom {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(calc(-100% + 500px - 25px));
+            }
+        }
+
+        @keyframes scrollBottomToTop {
+            0% {
+                transform: translateY(calc(-100% + 500px - 25px));
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Adjust scroll speed for different devices */
+        @media (max-width: 767px) {
+            :root {
+                --scroll-speed: 60s;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            :root {
+                --scroll-speed: 50s;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --scroll-speed: 40s;
+            }
+        }
+        
+        /* Mobile Auto-scroll */
+        .mobile-auto-scroll {
+            position: relative;
+        }
+        
+        .mobile-auto-scroll .faq-content {
+            animation: mobileScroll var(--scroll-speed) linear infinite;
+        }
+        
+        @keyframes mobileScroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(calc(-100% + 100vh));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-container">
+            <!-- Left Column (Top to Bottom) -->
+            <div class="faq-column left-column mobile-auto-scroll">
+                <div class="faq-content">
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>What sets Techorses apart from other digital agencies?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Techorses stands out for its commitment to innovation, client-centric approach, and multidisciplinary delivery of comprehensive digital solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-credit-card"></i>
+                            <h3>How can I track the progress of my project during development?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide regular updates and access to project management tools, ensuring transparency and collaboration throughout the development lifecycle.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>Do you offer maintenance and support services after the project is completed?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We provide ongoing maintenance and support services to ensure your digital assets remain up-to-date and secure.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-key"></i>
+                            <h3>What is the cost structure for your services?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our pricing is tailored to the scope and complexity of each project. We provide detailed, transparent quotes to ensure clarity on costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>What is the Techorses development process like?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our development process is collaborative and iterative, ensuring client involvement at key stages for feedback and adjustments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-credit-card"></i>
+                            <h3>What technologies do you specialize in?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We specialize in modern web technologies including React, Angular, Node.js, Python, and cloud platforms like AWS and Azure.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>How long does a typical project take?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Project timelines vary based on complexity, but we provide clear estimates after our initial consultation and requirements gathering.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-key"></i>
+                            <h3>Do you offer SEO services?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer comprehensive SEO services as part of our digital marketing solutions to improve your online visibility.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Can you help with mobile app development?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely, we develop cross-platform mobile applications using technologies like React Native and Flutter.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-credit-card"></i>
+                            <h3>What about ongoing maintenance?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer flexible maintenance plans to keep your digital products updated and secure after launch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column (Bottom to Top) - Hidden on mobile -->
+            <div class="faq-column right-column">
+                <div class="faq-content">
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>What is the cost structure for your services?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our pricing is tailored to the scope and complexity of each project. We provide detailed, transparent quotes to ensure clarity on costs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>What is the Techorses development process like?
+                            </h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our development process is collaborative and iterative, ensuring client involvement at key stages for feedback and adjustments.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-headset"></i>
+                            <h3>What support do you provide if issues arise after the project is completed?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our post-launch support includes troubleshooting, bug fixes, and ongoing assistance to address any issues that may arise, ensuring a smooth and reliable digital experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h3>What is the cost structure for your services?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our pricing is tailored to the scope and complexity of each project. We provide detailed, transparent quotes to ensure clarity on costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>What sets Techorses apart from other digital agencies?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Techorses stands out for its commitment to innovation, client-centric approach, and multidisciplinary delivery of comprehensive digital solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>How can I track the progress of my project during development?
+                            </h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide regular updates and access to project management tools, ensuring transparency and collaboration throughout the development lifecycle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-headset"></i>
+                            <h3>Do you offer maintenance and support services after the project is completed?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We provide ongoing maintenance and support services to ensure your digital assets remain up-to-date and secure.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-card">
+                        <div class="faq-question">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h3>What is the cost structure for your services?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our pricing is tailored to the scope and complexity of each project. We provide detailed, transparent quotes to ensure clarity on costs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adjust animation speed based on screen size
+            function adjustAnimationSpeed() {
+                let speed;
+                if (window.innerWidth < 768) {
+                    speed = 60; // Mobile
+                } else if (window.innerWidth < 1024) {
+                    speed = 50; // Tablet
+                } else {
+                    speed = 40; // Desktop
+                }
+                document.documentElement.style.setProperty('--scroll-speed', speed + 's');
+                
+                // Force restart animations to apply new speed
+                document.querySelectorAll('.faq-content').forEach(content => {
+                    content.style.animation = 'none';
+                    void content.offsetWidth; // Trigger reflow
+                    content.style.animation = '';
+                });
+            }
+
+            // Mobile auto-scroll with manual interaction
+            function setupMobileAutoScroll() {
+                if (window.innerWidth >= 768) return;
+                
+                const mobileContent = document.querySelector('.mobile-auto-scroll .faq-content');
+                const container = document.querySelector('.mobile-auto-scroll');
+                let isScrolling = false;
+                let lastScrollPos = 0;
+                let scrollDirection = 1; // 1 for down, -1 for up
+                let autoScrollSpeed = 0.5; // pixels per frame
+                let userScrollTimeout;
+                
+                // Pause animation and use JS-based scrolling
+                mobileContent.style.animation = 'none';
+                mobileContent.style.transform = 'translateY(0)';
+                
+                // Calculate total content height
+                const contentHeight = mobileContent.scrollHeight;
+                const containerHeight = container.clientHeight;
+                const maxScroll = contentHeight - containerHeight;
+                
+                let currentPos = 0;
+                
+                function autoScroll() {
+                    if (isScrolling) return;
+                    
+                    currentPos += autoScrollSpeed * scrollDirection;
+                    
+                    // Reverse direction at boundaries
+                    if (currentPos <= 0) {
+                        currentPos = 0;
+                        scrollDirection = 1;
+                    } else if (currentPos >= maxScroll) {
+                        currentPos = maxScroll;
+                        scrollDirection = -1;
+                    }
+                    
+                    mobileContent.style.transform = `translateY(-${currentPos}px)`;
+                    requestAnimationFrame(autoScroll);
+                }
+                
+                // Handle manual scrolling
+                container.addEventListener('scroll', function() {
+                    const scrollTop = container.scrollTop;
+                    
+                    // Detect user scroll direction
+                    if (scrollTop > lastScrollPos) {
+                        scrollDirection = 1; // scrolling down
+                    } else if (scrollTop < lastScrollPos) {
+                        scrollDirection = -1; // scrolling up
+                    }
+                    lastScrollPos = scrollTop;
+                    
+                    // Adjust auto-scroll position to match manual scroll
+                    currentPos = scrollTop;
+                    
+                    // Temporarily increase speed when user scrolls
+                    autoScrollSpeed = 5;
+                    clearTimeout(userScrollTimeout);
+                    userScrollTimeout = setTimeout(() => {
+                        autoScrollSpeed = 0.5;
+                    }, 1000);
+                });
+                
+                // Start auto-scroll
+                autoScroll();
+            }
+            
+            // Initial adjustments
+            adjustAnimationSpeed();
+            setupMobileAutoScroll();
+            
+            // Handle resize
+            window.addEventListener('resize', function() {
+                adjustAnimationSpeed();
+                setupMobileAutoScroll();
+            });
+        });
+    </script>
+</body>
+</html>

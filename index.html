@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techorses - IT Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --light-text: #6b7280;
+      --bg-color: #f9fafb;
+      --white: #ffffff;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --accent-color: #3b82f6;
+      --highlight-color: rgba(37, 99, 235, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Condensed', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .hero {
+  height: 95vh;
+  min-height: 600px;
+  max-height: 1200px;
+  display: flex;
+  margin: 2vh 3%;
+  top: -11vh;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 65px;
+  /* Add the wave as the main background */
+  background: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0,700 C 0,700 0,350 0,350 C 143.82142857142858,311.6071428571429 287.64285714285717,273.2142857142857 394,314 C 500.35714285714283,354.7857142857143 569.25,474.75 677,466 C 784.75,457.25 931.3571428571427,319.7857142857143 1065,279 C 1198.6428571428573,238.21428571428572 1319.3214285714287,294.1071428571429 1440,350 C 1440,350 1440,700 1440,700 Z' fill='%23FFAD00' fill-opacity='0.15' /%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+    /* .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgb(225, 234, 251) 0%, rgb(212, 225, 239) 100%);
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+    
+      background: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0,700 C 0,700 0,350 0,350 C 143.82142857142858,311.6071428571429 287.64285714285717,273.2142857142857 394,314 C 500.35714285714283,354.7857142857143 569.25,474.75 677,466 C 784.75,457.25 931.3571428571427,319.7857142857143 1065,279 C 1198.6428571428573,238.21428571428572 1319.3214285714287,294.1071428571429 1440,350 C 1440,350 1440,700 1440,700 Z' fill='%23FFAD00' fill-opacity='1' /%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      z-index: 1;
+    } */
+
+    .container1 {
+      width: 100%;
+      max-width: 1900px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      width: 70%;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      width: 100%;
+    }
+
+    .hero h3 {
+      font-size: 1.2rem;
+      padding-bottom: 1vh;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 660px;
+      margin-bottom: 1rem;
+      color: var(--light-text);
+    }
+
+    .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .btnz {
+      display: inline-block;
+      padding: 12px 37px;
+      background-color: #3892f3;
+      color: white;
+      border-radius: 60px;
+      margin-top: 2vh;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .btnz:hover {
+      background-color: rgb(48, 99, 227);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-img {
+      position: absolute;
+      right: 5%;
+      height: 110%;
+      max-height: none;
+      width: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .scroll-down span {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--light-text);
+      font-size: 0.9rem;
+    }
+
+    .mouse {
+      width: 25px;
+      height: 40px;
+      border: 2px solid var(--light-text);
+      border-radius: 15px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 5px;
+      box-sizing: border-box;
+    }
+
+    .mouse::before {
+      content: '';
+      width: 4px;
+      height: 8px;
+      background-color: var(--light-text);
+      border-radius: 2px;
+      animation: scrollDown 1.5s infinite;
+    }
+
+    @keyframes scrollDown {
+      0% {
+        opacity: 0;
+        transform: translateY(0);
+      }
+
+      30% {
+        opacity: 1;
+        transform: translateY(5px);
+      }
+
+      60% {
+        opacity: 1;
+        transform: translateY(10px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+    }
+
+    /* Sticky contact buttons */
+    .sticky-left {
+      position: fixed;
+      right: 30px;
+      top: 44.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .sticky-right {
+      position: fixed;
+      left: 30px;
+      top: 40%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-btn,
+    .whatsapp-btn {
+      background: #9edaff;
+      color: black;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+      transition: all 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-btn:hover {
+      background: linear-gradient(45deg, #42f268, #43e746, #92e480, #56c865, #3cf849, #27f743);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .contact-btn:hover {
+      background: linear-gradient(45deg, #2e8bb9, #2e68b9, #1f75cc, #598be0, #2290ab, #2578cc);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .social-link {
+      background: #9edaff;
+      color: var(--text-color);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+    }
+
+    .social-link.facebook:hover {
+      background: #1877f2;
+      color: white;
+    }
+
+    .social-link.instagram:hover {
+      background: linear-gradient(135deg, #F58529 0%, #DD2A7B 30%, #8134AF 60%, #515BD4 100%);
+      color: white;
+    }
+
+    .social-link.linkedin:hover {
+      background: #0a66c2;
+      color: white;
+    }
+
+    /* Tooltips */
+    [data-tooltip] {
+      position: relative;
+    }
+
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -40px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    [data-tooltip]:hover::after {
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-img {
+        right: 0;
+        opacity: 0.8;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        border-radius: 30px;
+        margin: 2vh 2%;
+        top: 0;
+      }
+
+      .container1 {
+        flex-direction: column;
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+
+      .hero-content {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .hero-img {
+        position: relative;
+        height: auto;
+        width: 80%;
+        max-width: 400px;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero h3,
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .sticky-left,
+      .sticky-right {
+        display: none;
+      }
+
+      .hero::after {
+        height: 20%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container1">
+      <div class="hero-content">
+        <h3>Your Trusted Partner for <span class="highlight">IT</span> Solutions and Services.</h3>
+        <h1>Ready to Redefine Your Digital Journey?</h1>
+        <p>From seamless web development to captivating mobile apps, stunning graphics, and strategic marketing
+          solutions.</p>
+        <h3>We're here to elevate your digital presence.</h3>
+        <a href="https://calendly.com/techorses/discovery-call?month=2025-04" class="btnz">NEED ASSISTANCE?</a>
+      </div>
+      <img class="hero-img" src="https://via.placeholder.com/800x600?text=HERO+IMAGE" alt="IT Solutions">
+    </div>
+
+    <div class="scroll-down">
+      <span>Scroll Down</span>
+      <div class="mouse"></div>
+    </div>
+
+    <!-- Sticky left contact button -->
+    <div class="sticky-left">
+      <a href="https://api.whatsapp.com/send/?phone=9328338281&text&type=phone_number&app_absent=0" class="contact-btn"
+        data-tooltip="Contact Us">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="https://api.whatsapp.com/send/?phone=9328338281&text&type=phone_number&app_absent=0" class="whatsapp-btn"
+        data-tooltip="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Sticky right social links -->
+    <div class="sticky-right">
+      <a href="https://www.linkedin.com/company/techorses-ride-the-technology/" class="social-link linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.instagram.com/techorses_/#" class="social-link instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/people/Techorses/100089081915251/?mibextid=ZbWKwL" class="social-link facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+  </section>
+</body>
+
+</html>
